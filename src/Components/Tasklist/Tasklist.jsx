@@ -1,45 +1,36 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import NewTask from './NewTask'
+import CompleteTask from './CompleteTask'
+import FailedTask from './FailedTask'
 
-const Tasklist = () => {
+const Tasklist = ({data}) => {
+    console.log(data)
   return (
-    <div id='tasklist' className=' overflow-x-auto h-[55%]  flex items-center justify-start gap-5 flex-nowrap py-5 mt-10 w-full '>
-      <div className=' flex-shrink-0 h-full w-[400px] bg-red-400 rounded-2xl '>
-    <div className='flex justify-between items-center py-5 px-3'>
-        <h3 className='bg-red-600 text-sm px-3 py- rounded'>High</h3>
-        <h4>16 june 2025</h4>
-    </div>
-    <h2 className='mt-5 px-3 text-2xl font-semibold'>Make a youtube video</h2>
-    <p className='px-2 text-sm mt-8 items-center justify-center'>You can be charismatic, funny, and intelligent, but your videos are useless if you don’t provide value. Videos are not about you or what you can gain. You probably won’t be successful if you get on YouTube looking to get something out of it. </p>
-</div>
+    <div id='tasklist' className=' overflow-x-scroll h-[55%] flex items-center gap-40 flex-nowrap py-5 mt-10 w-full '>
+    {data.tasks.map((elem,idx)=>{
+     if(elem.active){
+      return <AcceptTask key={idx} />
+     }
 
-<div className=' flex-shrink-0 h-full w-[400px] bg-blue-400 rounded-2xl '>
-    <div className='flex justify-between items-center py-5 px-3'>
-        <h3 className='bg-red-600 text-sm px-3 py- rounded'>High</h3>
-        <h4>16 june 2025</h4>
-    </div>
-    <h2 className='mt-5 px-3 text-2xl font-semibold'>Make a youtube video</h2>
-    <p className='px-2 text-sm mt-8 items-center justify-center'>You can be charismatic, funny, and intelligent, but your videos are useless if you don’t provide value. Videos are not about you or what you can gain. You probably won’t be successful if you get on YouTube looking to get something out of it. </p>
-</div>
+     if(elem.NewTask){
+      return <NewTask key={idx}  />
 
-<div className=' flex-shrink-0 h-full w-[400px] bg-green-400 rounded-2xl '>
-    <div className='flex justify-between items-center py-5 px-3'>
-        <h3 className='bg-red-600 text-sm px-3 py- rounded'>High</h3>
-        <h4>16 june 2025</h4>
-    </div>
-    <h2 className='mt-5 px-3 text-2xl font-semibold'>Make a youtube video</h2>
-    <p className='px-2 text-sm mt-8 items-center justify-center'>You can be charismatic, funny, and intelligent, but your videos are useless if you don’t provide value. Videos are not about you or what you can gain. You probably won’t be successful if you get on YouTube looking to get something out of it. </p>
-</div>
+     }
 
-<div className=' flex-shrink-0 h-full w-[400px] bg-amber-400 rounded-2xl '>
-    <div className='flex justify-between items-center py-5 px-3'>
-        <h3 className='bg-red-600 text-sm px-3 py- rounded'>High</h3>
-        <h4>16 june 2025</h4>
-    </div>
-    <h2 className='mt-5 px-3 text-2xl font-semibold'>Make a youtube video</h2>
-    <p className='px-2 text-sm mt-8 items-center justify-center'>You can be charismatic, funny, and intelligent, but your videos are useless if you don’t provide value. Videos are not about you or what you can gain. You probably won’t be successful if you get on YouTube looking to get something out of it. </p>
-</div>
+     if(elem.completed){
+      return <CompleteTask key={idx}  />
+     }
 
-    </div>
+      if(elem.failed){
+        return <FailedTask key={idx}  />
+      }
+    })}
+  
+
+
+</div>
+    
   )
 }
 
